@@ -1,33 +1,33 @@
 const url = "https://www.martinlk.no/wp-json/wc/store/products";
-fetch(url)
+const productContainer = document.querySelector(".products");
 
-.then(response => response.json())
-.then(data => {
-    console.log('Success:', data);
-    listProducts(data);
-})
-.catch((error) => {
-    console.error('Error', error);
-})
-
-
-const output = document.querySelector("#products");
-function listProducts (products) {
-    let myList = "";
-    for (let product of products) {
-        console.log(product);
-        myList += `
-        <li>
-            <a href="product.html?id=${product.id}">
-                ${product.images}
-                ${product.name}
-                ${product.price_html}
-                
-                
-                
-
-            </a>
-        </li>`;
+async function getProducts(){
+    try {
+        const response = await fetch(url);
+        const getResults = await response.json();
+        createHTML(getResults);
+        console.log(getResults);
     }
-    output.innerHTML = myList;
+
+    catch(error){
+        console.log(error);
+    }
+}
+
+getProducts();
+
+function createHTML(products){
+    products.forEach(function(product){
+        productContainer.innerHTML +=
+        `<div class="product">
+        <a href="product.html?id=${product.id}">
+        <img src="${product.images[0].src}" alt="${product.name}">
+        </a>
+        <h2>${product.name}</h2>
+        <p>${product.price_html}</p>
+        
+        <button>${product.add_to_cart.text}</button>
+        </div>
+        `
+    })
 }

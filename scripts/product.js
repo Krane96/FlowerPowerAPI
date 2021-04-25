@@ -1,13 +1,13 @@
 const queryString = window.location.search;
 const id = new URLSearchParams(queryString).get('id');
-if (!id) { window.location = "products.html"; }
 
-const url = "https://www.martinlk.no/wp-json/wp/v2/products/${id}"
+
+const url = `https://www.martinlk.no/wp-json/wc/store/products/${id}`;
 fetch(url)
 .then(response => response.json())
 .then(data => {
     console.log('Success:', data);
-    listProducts(data);
+    displayProduct(data);
 })
 .catch((error) => {
     console.error('Error', error);
@@ -15,17 +15,23 @@ fetch(url)
 
 const output = document.querySelector("#product");
 function displayProduct (data) {
-    console.log(data);
-    const name = data.name;
-    const excerpt = data.excerpt;
-    const link = data.link;
+   // console.log(data);
 
     let content = `
-    <h1>${name}</h1>
-    ${excerpt}
-    <p>&gt; <a href="${link}" target="_blank">Read more </a></p>
-    ;`
+    <div class="productDetails-1">
+    <img src="${data.images[0].src}" alt="${data.name}">
+    </div>
+    <div class="productDetails-2">
+    <h1>${data.name}</h1>
+    <p>${data.price_html}</p>
+    <p>${data.short_description}</p>
+    <input type="number" value="1"></input>
+    <button class="pinkButton">${data.add_to_cart.text}</button>
+    <h3>Description</h3>
+    <p>${data.description}</p>
+    </div>
+    `
 
     output.innerHTML = content;
-    document.name = name;
+    
 }
