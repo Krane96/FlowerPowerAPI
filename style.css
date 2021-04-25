@@ -1,7 +1,7 @@
 body{
     max-width: 1000px;
-    margin: auto;
     font-family: 'Source Sans Pro', sans-serif;
+    margin: auto;
 }
 h1{
     text-align: center;
@@ -11,6 +11,7 @@ p{
     opacity: 75%;
     font-size: 0.8em;
 }
+
 
 img{
     width: 100%;
@@ -36,6 +37,16 @@ h2{
     font-size: 1em;
     font-weight: lighter;
 }
+.nav{
+    text-align: center;
+    margin: 20px 10px;
+}
+.logo img{
+    width: 250px;
+}
+.logo{
+    text-align: center;
+}
 
 .product{
     margin: 20px;
@@ -55,7 +66,7 @@ h2,p,button, img{
 }
 
 .productDetails-1{
-    margin-top: 100px;
+    margin-top: 10px;
 
 }
 #product{

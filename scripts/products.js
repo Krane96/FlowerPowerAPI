@@ -25,7 +25,6 @@ function createHTML(products){
         </a>
         <h2>${product.name}</h2>
         <p>${product.price_html}</p>
-        
         <button>${product.add_to_cart.text}</button>
         </div>
         `
