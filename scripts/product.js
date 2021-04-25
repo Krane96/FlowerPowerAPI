@@ -7,14 +7,14 @@ fetch(url)
 .then(response => response.json())
 .then(data => {
     console.log('Success:', data);
-    displayProduct(data);
+    displayProductDetails(data);
 })
 .catch((error) => {
     console.error('Error', error);
 })
 
-const output = document.querySelector("#product");
-function displayProduct (data) {
+const displayHTML = document.querySelector("#product");
+function displayProductDetails (data) {
    // console.log(data);
 
     let content = `
@@ -32,6 +32,6 @@ function displayProduct (data) {
     </div>
     `
 
-    output.innerHTML = content;
+    displayHTML.innerHTML = content;
     
 }
